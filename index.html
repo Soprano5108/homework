@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<style>
+    .my-btn{display: block;}    
+    
+</style>
+    <div id="root">
+       <div class="parent" v-bind:style="{'background-color': curTheme}">     
+            <div class="btnValue">
+                <button v-on:click="testIf = 1">Value 1</button>
+                <button v-on:click="testIf = 2">Value 2</button>
+                <button v-on:click="testIf = 3" >Value 3</button>
+                <button v-on:click="popUp = 1" >PopUp</button>
+            </div>
+     <div class="btnStyle">
+                <button v-on:click="changeClassName = 'btnStyle1'">style 1</button>
+                <button v-on:click="changeClassName = 'btnStyle2'">style 2</button>
+                <button v-on:click="changeClassName = 'btnStyle3'" >style 3</button>
+    </div>
+        
+         <div v-bind:class="changeClassName">
+            <ol>
+                <li v-show="testIf == 1" v-for="(car, i) in carArr" :key="i">{{ car }}</li>
+                <li v-else-if="testIf !== 1" v-bind:class="testBindClassName">  </li>
+            </ol>
+
+            <ol>
+                <li v-show="testIf == 2" v-for="(year, i) in yearArr" :key="i">{{ year }}</li>
+                <li v-else-if="testIf !== 2" v-bind:class="testBindClassName">  </li>
+            </ol>
+
+            <ol>
+                <li v-show="testIf == 3" v-for="(color, i) in colorArr" :key="i">{{ color }}</li>
+                <li v-else-if="testIf !== 3" v-bind:class="testBindClassName">  </li>
+            </ol>
+      </div>
+                   
+    <div v-else-if="popUp !== 1" v-bind:style="display:none"> </div>
+    <div v-if="popUp == 1" v-on:click="popUp = 0" class="popupBG">   </div>
+    <div v-on:click="popUp = 0" v-if="popUp == 1" class="X">X</div>
+    <div v-on:click="popUp = 1" v-if="popUp == 1" class='popUpMain'>
+     
+    <div class="btnStyle" style="flex-direction: column; justify-content: center; align-items: center; margin-top: 20px;">
+          <button v-for="(color, key) in themeColors" v-bind:key="key" v-on:click="curTheme = color">{{ key }}</button>                                     
+    </div>
+      
+    </div>
+</div></div>
+   <div>
+		<h1 style="text-align: center">JS</h1>
+		<div class="btnValue">
+		
+			<button class="car">Car</button>
+			<button class="year">year</button>
+			<button class="color">color</button>
+		</div>
+		<div class="btnStyle">
+			<button class="button_color">red</button>
+			<button class="button_color">blue</button>
+			<button class="button_color">orange</button>
+		</div>
+		<ol class="colorlist"></ol>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
